@@ -143,8 +143,7 @@
     vscode
     vesktop
     gimp
-    wine
-    filelight
+    kdePackages.filelight
     mpv
     steam
     spotify

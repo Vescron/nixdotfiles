@@ -19,12 +19,22 @@
     };
   };
 
-  outputs = { nixpkgs, catppuccin, home-manager, ... } @ inputs: 
+  outputs = { self, nixpkgs, catppuccin, home-manager, ... } @ inputs: 
     let
       # system = "x86_64-linux";
       pkgs = import nixpkgs {system="x86_64-linux"; config.allowUnfree = true;
                           overlays = [inputs.alacritty-theme.overlays.default];};
+      inherit (self) outputs;
     in {
+
+      nixosConfigurations = {
+      sibtain = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        # > Our main nixos configuration file <
+        modules = [./configuration.nix];
+        };
+      };
+      
       homeConfigurations."sibtain" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         # Use the system's Nixpkgs for the Home Manager configuration.
@@ -34,7 +44,7 @@
         extraSpecialArgs = {
           inherit inputs;
         };
-        modules = [ ./home.nix
+        modules = [ ./Home-manager/home.nix
           inputs.zen-browser.homeModules.twilight
           catppuccin.homeModules.catppuccin
           inputs.spicetify-nix.homeManagerModules.default ];
