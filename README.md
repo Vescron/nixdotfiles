@@ -13,5 +13,5 @@
 5. Finally rebuild and switch
    ```
    cd ~/.config/dotfiles
-   sudo nixos-rebuild switch --flake #{your username}
+   sudo nixos-rebuild switch --flake .#{your username}
    ```
