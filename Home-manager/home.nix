@@ -24,13 +24,16 @@
   # environment.
   home.packages = [
     pkgs.gnome-tweaks
+    pkgs.mangojuice
+    pkgs.mangohud
     pkgs.git
     pkgs.zsh
     pkgs.rquickshare
     pkgs.dwarfs
     pkgs.fuse-overlayfs
-    pkgs.wine-staging
+    pkgs.wineWowPackages.staging
     pkgs.bubblewrap
+    pkgs.gnomeExtensions.appindicator
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -78,6 +81,14 @@
     #   enabledExtensions=[
     #   "dash-to-dock@micxgx.gmail.com"];
     # };
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+      ];
+      disabled-extensions = [];
+    };
 
     "org/gnome/shell/keybindings" = {
       "switch-to-application-1" = [""];
@@ -96,8 +107,12 @@
       "switch-to-workspace-2" = ["<Super>2"];
       "switch-to-workspace-3" = ["<Super>3"];
       "switch-to-workspace-4" = ["<Super>4"];
-      "switch-to-workspace-up" = ["<Super>Scroll_Up"];
-      "switch-to-workspace-down" = ["<Super>Scroll_Down"];
+      "move-to-workspace-1" = ["<Shift><Super>1"];
+      "move-to-workspace-2" = ["<Shift><Super>2"];
+      "move-to-workspace-3" = ["<Shift><Super>3"];
+      "move-to-workspace-4" = ["<Shift><Super>4"];
+      "switch-to-workspace-up" = ["<Super>w"];
+      "switch-to-workspace-down" = ["<Super>s"];
     
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
