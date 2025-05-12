@@ -100,6 +100,7 @@
       "switch-to-application-7" = [""];
       "switch-to-application-8" = [""];
       "switch-to-application-9" = [""];
+      
     };
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -111,8 +112,8 @@
       "move-to-workspace-2" = ["<Shift><Super>2"];
       "move-to-workspace-3" = ["<Shift><Super>3"];
       "move-to-workspace-4" = ["<Shift><Super>4"];
-      "switch-to-workspace-up" = ["<Super>w"];
-      "switch-to-workspace-down" = ["<Super>s"];
+      "switch-to-workspace-left" = ["<Super>w"];
+      "switch-to-workspace-right" = ["<Super>s"];
     
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
