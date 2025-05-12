@@ -6,7 +6,7 @@
    ```
 3. I keep the dotfiles in .config
    ```
-   mv nixdotfiles ~/.config/
+   mv nixdotfiles ~/.config/dotfiles
    ```
 4. Edit flake.nix and add ur own username in place of "sibtain"
    
