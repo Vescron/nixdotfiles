@@ -96,13 +96,20 @@
     epiphany # web browser
     geary # email reader
     gnome-characters
+    gnome-calendar
+    gnome-contacts
+    gnome-weather
+    gnome-connections
+    gnome-maps
     gnome-music
     gnome-terminal
     gnome-tour
     hitori # sudoku game
     iagno # go game
+    simple-scan
     tali # poker game
     totem # video player
+    yelp # help browser
   ]);
 
   # Configure keymap in X11
