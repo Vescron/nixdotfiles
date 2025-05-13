@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -75,9 +75,13 @@
     LC_TIME = "en_IN";
   };
 
+  nix.settings.nix-path = config.nix.nixPath;
+  nix.channel.enable = false;
+
   nix = {
     nixPath = [
-      "nixos-config = ~/.config/dotfiles/configuration.nix"
+      "nixpkgs=${pkgs.path}"
+      "nixos-config=/home/sibtain/.config/dotfiles/configuration.nix"
     ];
   };
 
