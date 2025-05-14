@@ -177,12 +177,21 @@
     btop
     cava
     alacritty
+    python312
+    python312Packages.pip
+    pipx
     home-manager
     obs-studio
     neofetch
     flameshot
     obsidian
     # catppuccin-papirus-folders
+];
+
+fonts.packages = with pkgs; [
+  noto-fonts
+  noto-fonts-cjk-sans
+  noto-fonts-emoji
 ];
 
 hardware.graphics = {
