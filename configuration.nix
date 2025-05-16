@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      /home/sibtain/.config/dotfiles/nbfc.nix
     ];
 
   # Bootloader.
@@ -185,6 +186,7 @@
     neofetch
     flameshot
     obsidian
+    nbfc-linux
     # catppuccin-papirus-folders
 ];
 
