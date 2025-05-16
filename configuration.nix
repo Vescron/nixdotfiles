@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      /home/sibtain/.config/dotfiles/nbfc.nix
+      ./nbfc.nix
     ];
 
   # Bootloader.
