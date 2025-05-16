@@ -86,6 +86,18 @@
     ];
   };
 
+services.auto-cpufreq.enable = true;
+services.auto-cpufreq.settings = {
+  battery = {
+     governor = "ondemand";
+     turbo = "never";
+  };
+  charger = {
+     governor = "performance";
+     turbo = "auto";
+  };
+};
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
