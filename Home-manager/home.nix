@@ -143,7 +143,7 @@
   programs.home-manager.enable = true;
 
   programs.alacritty = {
-    enable = true
+    enable = true;
     settings.general.import = [pkgs.alacritty-theme.tokyo_night];
     
   };
