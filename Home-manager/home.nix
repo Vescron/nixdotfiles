@@ -27,17 +27,13 @@
     pkgs.mangojuice
     pkgs.mangohud
     pkgs.git
-    pkgs.zsh
     pkgs.rquickshare
     pkgs.dwarfs
     pkgs.fuse-overlayfs
     pkgs.wineWowPackages.staging
     pkgs.bubblewrap
+    pkgs.lutris
     pkgs.gnomeExtensions.appindicator
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -69,6 +65,7 @@
 
   home.sessionVariables = {
     # EDITOR = "emacs";
+    MANGOHUD=1;
   };
 
   dconf.settings = {
@@ -146,7 +143,7 @@
   programs.home-manager.enable = true;
 
   programs.alacritty = {
-    enable = true;
+    enable = true
     settings.general.import = [pkgs.alacritty-theme.tokyo_night];
     
   };
