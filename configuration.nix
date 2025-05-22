@@ -141,7 +141,7 @@ services.auto-cpufreq.settings = {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -242,5 +242,8 @@ hardware.graphics = {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "24.11"; # Did you read the comment?
+
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
 }

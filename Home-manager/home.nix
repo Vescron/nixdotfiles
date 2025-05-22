@@ -32,7 +32,7 @@
     pkgs.fuse-overlayfs
     pkgs.wineWowPackages.staging
     pkgs.bubblewrap
-    pkgs.lutris
+    pkgs.cartridges
     pkgs.gnomeExtensions.appindicator
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -67,6 +67,31 @@
     # EDITOR = "emacs";
     MANGOHUD=1;
   };
+
+  programs.zsh = {
+  enable = true;
+  # enableCompletions = true;
+  autosuggestion.enable = true;
+  syntaxHighlighting.enable = true;
+  initContent = "source ~/.p10k.zsh";
+  shellAliases = {
+    # ll = "ls -l";
+    nixupdate = "sudo nixos-rebuild switch --flake $HOME/.config/dotfiles/#sibtain";
+    homeupdate = "home-manager switch --flake $HOME/.config/dotfiles/#sibtain";
+  };
+  history.size = 10000;
+  plugins = [{                                                                                   
+    name = "powerlevel10k";                                                           
+    src = pkgs.zsh-powerlevel10k;                                                     
+    file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";                         
+  }];
+  oh-my-zsh = {
+    enable = true;
+    plugins = [ "git"];
+    custom = "$HOME/.oh-my-zsh/custom/";
+    # theme = "powerlevel10k/powerlevel10k";
+  };
+};
 
   dconf.settings = {
     # # This is an example of how to set a dconf setting. You can find the
