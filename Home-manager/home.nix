@@ -65,8 +65,35 @@
 
   home.sessionVariables = {
     # EDITOR = "emacs";
-    MANGOHUD=1;
+    # MANGOHUD=1;
   };
+
+  programs.mpv = {
+  enable = true;
+
+  package = (
+    pkgs.mpv-unwrapped.wrapper {
+      scripts = with pkgs.mpvScripts; [
+        uosc
+        sponsorblock
+        thumbfast
+        videoclip
+        quality-menu
+        mpv-discord
+      ];
+
+      mpv = pkgs.mpv-unwrapped.override {
+        waylandSupport = true;
+      };
+    }
+  );
+
+  config = {
+    profile = "high-quality";
+    ytdl-format = "bestvideo[height<=1440][vcodec^=avc1]+bestaudio";
+    cache-default = 4000000;
+  };
+};
 
   programs.zsh = {
   enable = true;
