@@ -34,6 +34,8 @@
     pkgs.bubblewrap
     pkgs.cartridges
     pkgs.gnomeExtensions.appindicator
+    pkgs.qbittorrent
+    pkgs.miru
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -77,9 +79,10 @@
         uosc
         sponsorblock
         thumbfast
-        videoclip
+        videoclip # c
         quality-menu
-        mpv-discord
+        mpv-discord #shift+d
+        youtube-upnext #ctrl+u
       ];
 
       mpv = pkgs.mpv-unwrapped.override {

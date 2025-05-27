@@ -20,7 +20,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.extraEntries = ''
-  menuentry 'Windows Boot Manager (on /dev/sda5)' --class windows --class os $menuentry_id_option 'osprober-efi-3736-D347' {
+  menuentry 'Windows Boot Manager (on /dev/sda4)' --class windows --class os $menuentry_id_option 'osprober-efi-3736-D347' {
     insmod part_gpt
     insmod fat
     set root='hd0,gpt5'
@@ -31,18 +31,6 @@
     fi
     chainloader /efi/Microsoft/Boot/bootmgfw.efi
     }
-  menuentry 'Void Linux (on /dev/sda4)' --class void --class gnu-linux --class gnu --class os $menuentry_id_option 'osprober-gnulinux-simple-90b717f6-661b-424e-b45b-7ede77805151' {
-    insmod part_gpt
-    insmod ext2
-    set root='hd0,gpt4'
-    if [ x$feature_platform_search_hint = xy ]; then
-      search --no-floppy --fs-uuid --set=root --hint-ieee1275='ieee1275//disk@0,gpt4' --hint-bios=hd0,gpt4 --hint-efi=hd0,gpt4 --hint-baremetal=ahci0,gpt4  90b717f6-661b-424e-b45b-7ede77805151
-    else
-      search --no-floppy --fs-uuid --set=root 90b717f6-661b-424e-b45b-7ede77805151
-    fi
-    linux /boot/vmlinuz-6.1.7_1 root=UUID=90b717f6-661b-424e-b45b-7ede77805151 ro loglevel=4
-    initrd /boot/initramfs-6.1.7_1.img
-  }
 '';
   boot.loader.grub.theme = (pkgs.sleek-grub-theme.override {
 	withBanner = "Grub";
@@ -109,6 +97,12 @@ services.auto-cpufreq.settings = {
 
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = with pkgs; [gnome-settings-daemon];
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.settings-daemon.plugins.power]
+    sleep-inactive-ac-type='nothing'
+    '';
+
   environment.gnome.excludePackages = (with pkgs; [
     atomix # puzzle game
     cheese # webcam tool
