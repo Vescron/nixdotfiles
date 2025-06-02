@@ -162,7 +162,7 @@ services.auto-cpufreq.settings = {
     #  thunderbird
     ];
   };
-  
+  programs.hyprland.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -239,5 +239,15 @@ hardware.graphics = {
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  #Mount
+  fileSystems."/run/media/sibtain/Local Disk" = {
+    device = "/dev/disk/by-uuid/4C62598A625979A2";
+    options = ["nofail"];
+};
+  fileSystems."/run/media/sibtain/Acer" = {
+    device = "/dev/disk/by-uuid/EA9C142B9C13F0B5";
+    options = ["nofail"];
+};
 
 }
