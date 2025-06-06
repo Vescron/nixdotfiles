@@ -12,30 +12,33 @@
     ];
 
   # Bootloader.
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    default = "saved";
+    # useOSProber = true;
+    efiSupport = true;
+    extraEntries = ''
+      menuentry 'Windows Boot Manager (on /dev/sda4)' --class windows --class os $menuentry_id_option 'osprober-efi-3736-D347' {
+        insmod part_gpt
+        insmod fat
+        set root='hd0,gpt5'
+        if [ x$feature_platform_search_hint = xy ]; then
+          search --no-floppy --fs-uuid --set=root --hint-ieee1275='ieee1275//disk@0,gpt5' --hint-bios=hd0,gpt5 --hint-efi=hd0,gpt5 --hint-baremetal=ahci0,gpt5  3736-D347
+        else
+          search --no-floppy --fs-uuid --set=root 3736-D347
+        fi
+        chainloader /efi/Microsoft/Boot/bootmgfw.efi
+      }
+    '';
+    theme = (pkgs.sleek-grub-theme.override {
+      withBanner = "Grub";
+      withStyle = "bigSur";
+    });
+  };
   boot.loader.systemd-boot.enable = false;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  #boot.loader.grub.useOSProber = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.extraEntries = ''
-  menuentry 'Windows Boot Manager (on /dev/sda4)' --class windows --class os $menuentry_id_option 'osprober-efi-3736-D347' {
-    insmod part_gpt
-    insmod fat
-    set root='hd0,gpt5'
-    if [ x$feature_platform_search_hint = xy ]; then
-      search --no-floppy --fs-uuid --set=root --hint-ieee1275='ieee1275//disk@0,gpt5' --hint-bios=hd0,gpt5 --hint-efi=hd0,gpt5 --hint-baremetal=ahci0,gpt5  3736-D347
-    else
-      search --no-floppy --fs-uuid --set=root 3736-D347
-    fi
-    chainloader /efi/Microsoft/Boot/bootmgfw.efi
-    }
-'';
-  boot.loader.grub.theme = (pkgs.sleek-grub-theme.override {
-	withBanner = "Grub";
-	withStyle = "bigSur";
-});
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
