@@ -37,9 +37,7 @@
     pkgs.qbittorrent
     pkgs.miru
     pkgs.heroic
-    pkgs.wl-clipboard
-    pkgs.slurp
-    pkgs.grim
+    pkgs.wasistlos
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -204,7 +202,6 @@
   programs.alacritty = {
     enable = true;
     settings.general.import = [pkgs.alacritty-theme.tokyo_night];
-    
   };
   
   catppuccin.flavor = "mocha";
@@ -227,7 +224,13 @@
     # Set the GTK theme to use. You can find a list of available themes in
     # /usr/share/themes.
     # theme = "Mint-Y";
-
+    # theme = {
+    #   package = pkgs.catppuccin.override {
+    #     variant = "mocha";
+    #     accent = "mauve";
+    #   };
+    #   name = "Catppuccin-Mocha";
+    # };
     # Set the icon theme to use. You can find a list of available themes in
     # /usr/share/icons.
     # iconTheme.package = pkgs.catppuccin-papirus-folders.override{

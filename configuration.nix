@@ -76,6 +76,8 @@
 
 services.power-profiles-daemon.enable = false;
 
+services.flatpak.enable = true;
+
 services.auto-cpufreq.enable = true;
 services.auto-cpufreq.settings = {
   battery = {
@@ -241,13 +243,13 @@ hardware.graphics = {
   users.defaultUserShell = pkgs.zsh;
 
   #Mount
-  fileSystems."/run/media/sibtain/Local Disk" = {
-    device = "/dev/disk/by-uuid/4C62598A625979A2";
-    options = ["nofail"];
-};
-  fileSystems."/run/media/sibtain/Acer" = {
-    device = "/dev/disk/by-uuid/EA9C142B9C13F0B5";
-    options = ["nofail"];
-};
+#   fileSystems."/run/media/sibtain/Local Disk" = {
+#     device = "/dev/disk/by-uuid/4C62598A625979A2";
+#     options = ["nofail"];
+# };
+#   fileSystems."/run/media/sibtain/Acer" = {
+#     device = "/dev/disk/by-uuid/EA9C142B9C13F0B5";
+#     options = ["nofail"];
+# };
 
 }

@@ -24,6 +24,17 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/run/media/sibtain/Local Disk" = {
+    device = "/dev/disk/by-uuid/4C62598A625979A2";
+    fsType = "ntfs";
+    options = ["nofail"];
+};
+  fileSystems."/run/media/sibtain/Acer" = {
+    device = "/dev/disk/by-uuid/EA9C142B9C13F0B5";
+    fsType = "ntfs";
+    options = ["nofail"];
+};
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
