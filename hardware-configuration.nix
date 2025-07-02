@@ -24,6 +24,12 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/run/media/sibtain/Windows" = {
+    device = "/dev/nvme0n1p2";
+    fsType = "ntfs";
+    options = ["nofail"];
+  };
+
   fileSystems."/run/media/sibtain/Local Disk" = {
     device = "/dev/disk/by-uuid/4C62598A625979A2";
     fsType = "ntfs";

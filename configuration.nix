@@ -95,6 +95,7 @@ services.auto-cpufreq.settings = {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers =["amdgpu"]; 
 
   # Enable the Cinnamon Desktop Environment.
   # services.xserver.displayManager.lightdm.enable = true;
@@ -122,6 +123,7 @@ services.auto-cpufreq.settings = {
     gnome-music
     gnome-terminal
     gnome-tour
+    gnome-system-monitor
     hitori # sudoku game
     iagno # go game
     simple-scan
@@ -176,6 +178,25 @@ services.auto-cpufreq.settings = {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  environment.variables={
+	RUSTICL_ENABLE="radeonsi";
+	ROC_ENABLE_PRE_VEGA = "1";
+   };
+
+  hardware.graphics = {
+   enable = true;
+   enable32Bit = true;
+   extraPackages = with pkgs; [
+     mesa
+     libva
+     libvdpau-va-gl
+     vulkan-loader
+     vulkan-validation-layers
+     mesa.opencl  # Enables Rusticl (OpenCL) support
+   ];
+ };
+
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -200,6 +221,9 @@ services.auto-cpufreq.settings = {
     flameshot
     obsidian
     nbfc-linux
+    mesa-demos
+    vulkan-tools
+    clinfo
     # catppuccin-papirus-folders
 ];
 
@@ -208,11 +232,12 @@ fonts.packages = with pkgs; [
   noto-fonts-cjk-sans
   noto-fonts-emoji
 ];
+fonts.enableDefaultPackages = true;
 
-hardware.graphics = {
-  enable = true;
-  enable32Bit = true;
-};
+# hardware.graphics = {
+#   enable = true;
+#   enable32Bit = true;
+# };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -34,10 +34,14 @@
     pkgs.bubblewrap
     pkgs.cartridges
     pkgs.gnomeExtensions.appindicator
+    pkgs.gnomeExtensions.blur-my-shell
     pkgs.qbittorrent
     pkgs.miru
     pkgs.heroic
     pkgs.wasistlos
+    pkgs.resources
+    pkgs.libsForQt5.kdeconnect-kde
+    pkgs.davinci-resolve
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -140,6 +144,7 @@
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "blur-my-shell@aunetx"
       ];
       disabled-extensions = [];
     };
@@ -201,6 +206,7 @@
 
   programs.alacritty = {
     enable = true;
+    # settings.window.decorations = "none";
     settings.general.import = [pkgs.alacritty-theme.tokyo_night];
   };
   
