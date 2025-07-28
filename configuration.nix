@@ -203,7 +203,7 @@ services.auto-cpufreq.settings = {
     vscode
     vesktop
     gimp
-    kdePackages.filelight
+    qdirstat
     mpv
     steam
     spotify
@@ -279,5 +279,7 @@ fonts.enableDefaultPackages = true;
 #     device = "/dev/disk/by-uuid/EA9C142B9C13F0B5";
 #     options = ["nofail"];
 # };
+
+programs.kdeconnect.enable = true; 
 
 }

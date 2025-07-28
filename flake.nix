@@ -9,6 +9,12 @@
     catppuccin = {
       url = "github:catppuccin/nix";
     };
+
+    curd = {
+            url = "github:Wraient/curd";
+            inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
