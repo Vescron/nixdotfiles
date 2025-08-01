@@ -48,8 +48,6 @@
     "Mod+Ctrl+S".action.move-window-down = {};
     "Mod+Ctrl+W".action.move-window-up = {};
 
-    "Alt+Tab".action.cycle-window = {};
-
     # Workspace switching
     "Mod+1".action.focus-workspace = 1;
     "Mod+2".action.focus-workspace = 2;
