@@ -2,7 +2,7 @@
   windowRules = [
     {
       geometry-corner-radius = let
-        radius = 0.0;
+        radius = 10.0;
       in {
         bottom-left = radius;
         bottom-right = radius;
@@ -48,13 +48,13 @@
       block-out-from = "screencast";
     }
     {
-      matches = [
-        {app-id = "zen";}
-        {app-id = "firefox";}
-        {app-id = "chromium-browser";}
-        {app-id = "xdg-desktop-portal-gtk";}
-      ];
-      scroll-factor = 0.5;
+      # matches = [
+      #   {app-id = "zen";}
+      #   {app-id = "firefox";}
+      #   {app-id = "chromium-browser";}
+      #   {app-id = "xdg-desktop-portal-gtk";}
+      # ];
+      # scroll-factor = 0.5;
     }
     {
       matches = [

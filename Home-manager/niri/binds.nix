@@ -72,5 +72,9 @@
 
     # System
     "Mod+Shift+E".action.quit = {};
+
+    #Applications
+    "Mod+E".action.spawn = "nautilus";
+    "Mod+B".action.spawn = "zen-twilight";
   };
 }

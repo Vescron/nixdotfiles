@@ -103,6 +103,7 @@ services.auto-cpufreq.settings = {
 
   services.displayManager.sessionPackages = with pkgs; [ niri ];
   services.displayManager.gdm.enable = true;
+  # services.displayManager.sddm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.desktopManager.gnome.extraGSettingsOverridePackages = with pkgs; [gnome-settings-daemon];
   services.desktopManager.gnome.extraGSettingsOverrides = ''

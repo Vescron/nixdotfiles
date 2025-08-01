@@ -13,7 +13,7 @@ in {
     settings = {
       environment = {
         CLUTTER_BACKEND = "wayland";
-        DISPLAY = null;
+        DISPLAY = ":0";
         GDK_BACKEND = "wayland,x11";
         MOZ_ENABLE_WAYLAND = "1";
         NIXOS_OZONE_WL = "1";
@@ -29,7 +29,7 @@ in {
         { command = ["mako"]; }
       { command = ["waybar"]; }
       { command = ["swaybg" "--image" "/home/sibtain/Pictures/a_white_building_with_balconies.jpg"]; }
-      { command = ["xwayland-seatellite"]; }
+      { command = ["xwayland-satellite"]; }
       ];
       input = {
         keyboard.xkb.layout = "us";
@@ -111,7 +111,7 @@ in {
           {proportion = 0.75;}
           {proportion = 1.0;}
         ];
-        default-column-width = {proportion = 0.5;};
+        default-column-width = {proportion = 0.75;};
 
         gaps = 6;
         struts = {
