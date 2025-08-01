@@ -63,6 +63,9 @@
     "Mod+T".action.switch-preset-column-width = {};
     "Mod+F".action.maximize-column = {};
     "Mod+Shift+F".action.fullscreen-window = {};
+    "Mod+Shift+V".action.toggle-window-floating = {};
+
+    "Mod+Space".action.toggle-overview = {};
 
     # Screenshots
     "Print".action.screenshot = {};

@@ -4,6 +4,7 @@
   imports = [
     # Include the Home Manager module
     ./niri
+    ./mako.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -60,7 +61,7 @@
     pkgs.pciutils
     pkgs.termius
     pkgs.tokyonight-gtk-theme
-    pkgs.mako
+    # pkgs.mako
     pkgs.fuzzel
     pkgs.base16-schemes
     pkgs.papirus-icon-theme   # Add this line
@@ -192,16 +193,13 @@
     # "org/gnome/desktop/interface" = {
     #   "clock-show-seconds" = true;
     # };
-    # "org/gnome/shell" = {
-    #   enabledExtensions=[
-    #   "dash-to-dock@micxgx.gmail.com"];
+
+    # "org/gnome/shell/extensions/user-theme" = {
+    #   name = "Tokyonight-Dark";
     # };
-    "org/gnome/shell/extensions/user-theme" = {
-      name = "Tokyonight-Dark";
-    };
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
+    # "org/gnome/desktop/interface" = {
+    #   color-scheme = "prefer-dark";
+    # };
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
@@ -324,8 +322,8 @@ in
     pointer
   ];
 
-  theme = spicePkgs.themes.catppuccin;
-  colorScheme = "mocha";
+  # theme = spicePkgs.themes.catppuccin;
+  # colorScheme = "mocha";
 };
 
 programs.zen-browser = {
@@ -339,17 +337,16 @@ programs.zen-browser = {
 
 stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-paper.yaml";
     targets = {
-      spicetify.enable = false;
-      gnome.enable = false;
-      zen-browser.enable = false;
+      spicetify.enable = true;
+      gnome.enable = true;
+      zen-browser.enable = true;
     };
     # fonts = {
     #   monospace = "JetBrainsMono Nerd Font";
     #   sansSerif = "Inter";
     # };
-    # image = ./wallpapers/moonlight.png;
   };
 
 programs.waybar.enable = true;

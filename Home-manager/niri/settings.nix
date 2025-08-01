@@ -101,6 +101,7 @@ in {
           active.color = "#fff9b5ff";
           inactive.color = "#61a7edff";
         };
+        always-center-single-column = true;
         shadow = {
           enable = true;
         };
