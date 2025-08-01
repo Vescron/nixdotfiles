@@ -64,7 +64,7 @@
         modules = [ ./Home-manager/home.nix
           ./Home-manager/niri
           inputs.stylix.homeModules.stylix
-          inputs.niri.homeModules.niri
+          # inputs.niri.homeModules.niri
           inputs.zen-browser.homeModules.twilight
           # catppuccin.homeModules.catppuccin
           inputs.spicetify-nix.homeManagerModules.default ];

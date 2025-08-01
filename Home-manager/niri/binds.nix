@@ -22,53 +22,54 @@
     "XF86MonBrightnessUp".action = brillo "-A" "5";
     "XF86MonBrightnessDown".action = brillo "-U" "5";
 
-    "Print".action.screenshot-screen = {write-to-disk = true;};
     "Mod+Shift+Alt+S".action = screenshot-window;
     "Mod+Shift+S".action.screenshot = {show-pointer = false;};
-    "Mod+D".action = spawn "${pkgs.anyrun}/bin/anyrun";
-    "Mod+Return".action = spawn "${pkgs.ghostty}/bin/ghostty";
     "Ctrl+Alt+L".action = spawn "sh -c pgrep hyprlock || hyprlock";
 
-    "Mod+U".action = spawn "env XDG_CURRENT_DESKTOP=gnome gnome-control-center";
+    "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
-    "Mod+Q".action = close-window;
-    "Mod+S".action = switch-preset-column-width;
-    "Mod+F".action = maximize-column;
+    # Applications - Fix spawn syntax
+    "Mod+Return".action.spawn = "alacritty";
+    "Mod+R".action.spawn = "fuzzel";
 
-    "Mod+1".action = set-column-width "25%";
-    "Mod+2".action = set-column-width "50%";
-    "Mod+3".action = set-column-width "75%";
-    "Mod+4".action = set-column-width "100%";
-    # "Mod+Shift+F".action = fullscreen-window;
-    "Mod+Shift+F".action = expand-column-to-available-width;
-    "Mod+Space".action = toggle-window-floating;
-    "Mod+W".action = toggle-column-tabbed-display;
+    # Window management
+    "Mod+Q".action.close-window = {};
+    "Mod+H".action.focus-column-left = {};
+    "Mod+L".action.focus-column-right = {};
+    "Mod+J".action.focus-window-down = {};
+    "Mod+K".action.focus-window-up = {};
+    "Mod+A".action.focus-column-left = {};
+    "Mod+D".action.focus-column-right = {};
+    "Mod+S".action.focus-window-down = {};
+    "Mod+W".action.focus-window-up = {};
 
-    "Mod+Comma".action = consume-window-into-column;
-    "Mod+Period".action = expel-window-from-column;
-    "Mod+C".action = center-visible-columns;
-    "Mod+Tab".action = switch-focus-between-floating-and-tiling;
+    "Mod+Ctrl+A".action.move-column-left = {};
+    "Mod+Ctrl+D".action.move-column-right = {};
+    "Mod+Ctrl+S".action.move-window-down = {};
+    "Mod+Ctrl+W".action.move-window-up = {};
 
-    "Mod+Minus".action = set-column-width "-10%";
-    "Mod+Plus".action = set-column-width "+10%";
-    "Mod+Shift+Minus".action = set-window-height "-10%";
-    "Mod+Shift+Plus".action = set-window-height "+10%";
+    "Alt+Tab".action.cycle-window = {};
 
-    "Mod+H".action = focus-column-left;
-    "Mod+L".action = focus-column-right;
-    "Mod+J".action = focus-window-or-workspace-down;
-    "Mod+K".action = focus-window-or-workspace-up;
-    "Mod+Left".action = focus-column-left;
-    "Mod+Right".action = focus-column-right;
-    "Mod+Down".action = focus-workspace-down;
-    "Mod+Up".action = focus-workspace-up;
+    # Workspace switching
+    "Mod+1".action.focus-workspace = 1;
+    "Mod+2".action.focus-workspace = 2;
+    "Mod+3".action.focus-workspace = 3;
+    "Mod+4".action.focus-workspace = 4;
 
-    "Mod+Shift+H".action = move-column-left;
-    "Mod+Shift+L".action = move-column-right;
-    "Mod+Shift+K".action = move-column-to-workspace-up;
-    "Mod+Shift+J".action = move-column-to-workspace-down;
+    "Mod+Ctrl+1".action.move-column-to-workspace = 1;
+    "Mod+Ctrl+2".action.move-column-to-workspace = 2;
+    "Mod+Ctrl+3".action.move-column-to-workspace = 3;
+    "Mod+Ctrl+4".action.move-column-to-workspace = 4;
 
-    "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
-    "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
+    # Column management
+    "Mod+T".action.switch-preset-column-width = {};
+    "Mod+F".action.maximize-column = {};
+    "Mod+Shift+F".action.fullscreen-window = {};
+
+    # Screenshots
+    "Print".action.screenshot = {};
+
+    # System
+    "Mod+Shift+E".action.quit = {};
   };
 }

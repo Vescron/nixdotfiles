@@ -9,7 +9,7 @@
   };
 in {
   programs.niri = {
-    # enable = true;
+    enable = true;
     settings = {
       environment = {
         CLUTTER_BACKEND = "wayland";
@@ -26,9 +26,13 @@ in {
         # (makeCommand "swww-daemon")
         # {command = ["wl-paste" "--watch" "cliphist" "store"];}
         # {command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
+        { command = ["mako"]; }
+      { command = ["waybar"]; }
+      { command = ["swaybg" "--image" "/home/sibtain/Pictures/a_white_building_with_balconies.jpg"]; }
+      { command = ["xwayland-seatellite"]; }
       ];
       input = {
-        keyboard.xkb.layout = "latam";
+        keyboard.xkb.layout = "us";
 
         touchpad = {
           click-method = "button-areas";
@@ -41,6 +45,16 @@ in {
           middle-emulation = true;
           accel-profile = "adaptive";
         };
+
+        mouse = {
+        accel-speed = 0.0;
+        accel-profile = "adaptive";
+        natural-scroll = false;
+        left-handed = false;
+        middle-emulation = false;
+        scroll-method = "two-finger";
+      };
+
         focus-follows-mouse = {
           enable = true;
           max-scroll-amount = "90%";
@@ -51,42 +65,41 @@ in {
       screenshot-path = "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
       outputs = {
         "eDP-1" = {
-          scale = 1.0;
-          position = {
-            x = 0;
-            y = 0;
-          };
+        # enable = true;  # This option doesn't exist
+        mode = { width = 1920; height = 1080; refresh = 60.0; };  # Changed from resolution/refresh-rate
+        position = { x = 0; y = 0; };
+        transform = {
+          flipped = false;
+          rotation = 0;
         };
-        "HDMI-A-1" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = null;
-          };
-          scale = 1.0;
-          position = {
-            x = 0;
-            y = -1080;
-          };
-        };
+        scale = 1.0;
+      };
       };
 
+      layer-rules = [
+      {
+        matches = [{ namespace = "^wallpaper$"; }];
+        place-within-backdrop = true;
+      }
+    ];
+
       overview = {
-        workspace-shadow.enable = false;
-        backdrop-color = "transparent";
+        workspace-shadow.enable = true;
+        # backdrop-color = "transparent";
       };
       gestures = {hot-corners.enable = true;};
       cursor = {
         size = 20;
-        theme = "${pointer.name}";
+        theme = "Bibata-Modern-Classic";
       };
       layout = {
+        background-color = "transparent";
         focus-ring.enable = false;
         border = {
           enable = true;
           width = 4;
-          active.color = "#ED61D730";
-          inactive.color = "#B8149F30";
+          active.color = "#fff9b5ff";
+          inactive.color = "#61a7edff";
         };
         shadow = {
           enable = true;
