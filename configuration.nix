@@ -101,10 +101,11 @@ services.auto-cpufreq.settings = {
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.desktopManager.cinnamon.enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = with pkgs; [gnome-settings-daemon];
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+  services.displayManager.sessionPackages = with pkgs; [ niri ];
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.extraGSettingsOverridePackages = with pkgs; [gnome-settings-daemon];
+  services.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.settings-daemon.plugins.power]
     sleep-inactive-ac-type='nothing'
     '';
@@ -169,7 +170,7 @@ services.auto-cpufreq.settings = {
     #  thunderbird
     ];
   };
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -280,6 +281,7 @@ fonts.enableDefaultPackages = true;
 #     options = ["nofail"];
 # };
 
+# programs.niri.enable = true;
 programs.kdeconnect.enable = true; 
 
 }

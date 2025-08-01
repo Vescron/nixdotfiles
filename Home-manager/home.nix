@@ -1,6 +1,11 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    # Include the Home Manager module
+    ./niri
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "sibtain";
@@ -42,6 +47,8 @@
     pkgs.cartridges
     pkgs.gnomeExtensions.appindicator
     pkgs.gnomeExtensions.blur-my-shell
+    pkgs.gnomeExtensions.user-themes
+    pkgs.gnomeExtensions.open-bar
     pkgs.qbittorrent
     pkgs.miru
     pkgs.heroic
@@ -52,6 +59,18 @@
     pkgs.unzip
     pkgs.pciutils
     pkgs.termius
+    pkgs.tokyonight-gtk-theme
+    pkgs.mako
+    pkgs.fuzzel
+    pkgs.base16-schemes
+    pkgs.papirus-icon-theme   # Add this line
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-gnome
+    pkgs.kdePackages.polkit-kde-agent-1
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.font-awesome
+    pkgs.swaybg
+    pkgs.xwayland-satellite
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -79,11 +98,39 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    ".local/share/applications/code.desktop".text = ''
+      [Desktop Entry]
+      Name=Visual Studio Code
+      Comment=Code Editing. Redefined.
+      GenericName=Text Editor
+      Exec=env ELECTRON_OZONE_PLATFORM_HINT=wayland code --ozone-platform=wayland %F
+      Icon=vscode
+      Type=Application
+      StartupNotify=true
+      Categories=Utility;TextEditor;Development;IDE;
+      MimeType=text/plain;inode/directory;
+      Actions=new-window;
+      StartupWMClass=code
+
+      [Desktop Action new-window]
+      Name=New Window
+      Exec=env ELECTRON_OZONE_PLATFORM_HINT=wayland code --ozone-platform=wayland --new-window %F
+      Icon=vscode
+    '';
   };
 
   home.sessionVariables = {
     # EDITOR = "emacs";
     # MANGOHUD=1;
+    WAYLAND_DISPLAY="wayland-1";
+    XDG_SESSION_TYPE="wayland";
+    XDG_CURRENT_DESKTOP="niri";
+    QT_QPA_PLATFORM = "wayland";
+    GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    
   };
 
   programs.mpv = {
@@ -149,12 +196,19 @@
     #   enabledExtensions=[
     #   "dash-to-dock@micxgx.gmail.com"];
     # };
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Tokyonight-Dark";
+    };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "blur-my-shell@aunetx"
+        "open-bar@linuxfactory.org"
       ];
       disabled-extensions = [];
     };
@@ -220,40 +274,32 @@
     settings.general.import = [pkgs.alacritty-theme.tokyo_night];
   };
   
-  catppuccin.flavor = "mocha";
-  # catppuccin.starship.enable = true;
-  catppuccin.accent = "mauve";
-  catppuccin.enable = true;
-  catppuccin.gtk.enable = true;
-  catppuccin.gtk.gnomeShellTheme = true;
-  catppuccin.gtk.icon.enable = true;
-  catppuccin.gtk.icon.accent = "mauve";
-  catppuccin.gtk.accent = "mauve";
-  catppuccin.gtk.tweaks = ["float"];
-  catppuccin.gtk.icon.flavor = "mocha";
+  # catppuccin.flavor = "mocha";
+  # # catppuccin.starship.enable = true;
+  # catppuccin.accent = "mauve";
+  # catppuccin.enable = true;
+  # catppuccin.gtk.enable = true;
+  # catppuccin.gtk.gnomeShellTheme = true;
+  # catppuccin.gtk.icon.enable = true;
+  # catppuccin.gtk.icon.accent = "mauve";
+  # catppuccin.gtk.accent = "mauve";
+  # catppuccin.gtk.tweaks = ["float"];
+  # catppuccin.gtk.icon.flavor = "mocha";
   gtk = {
     # Enable GTK applications to use the system theme.
     enable = true;
     cursorTheme.package = pkgs.bibata-cursors;
     cursorTheme.name = "Bibata-Modern-Classic";
 
-    # Set the GTK theme to use. You can find a list of available themes in
-    # /usr/share/themes.
-    # theme = "Mint-Y";
     # theme = {
-    #   package = pkgs.catppuccin.override {
-    #     variant = "mocha";
-    #     accent = "mauve";
-    #   };
-    #   name = "Catppuccin-Mocha";
+    #   package = pkgs.tokyonight-gtk-theme;
+    #   name = "Tokyonight-Dark";
     # };
-    # Set the icon theme to use. You can find a list of available themes in
-    # /usr/share/icons.
-    # iconTheme.package = pkgs.catppuccin-papirus-folders.override{
-    #   flavor = "mocha";
-    #   accent = "lavender";
-    # };
-    # iconTheme.name = "Papirus-Dark";
+
+    iconTheme = {
+      package = pkgs.papirus-icon-theme; 
+      name = "Papirus-Dark";              
+    };
   };
 
 #Spicetify module
@@ -290,4 +336,201 @@ programs.zen-browser = {
       # find more options here: https://mozilla.github.io/policy-templates/
     };
   };
+
+stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+    targets = {
+      spicetify.enable = false;
+      gnome.enable = false;
+      zen-browser.enable = false;
+    };
+    # fonts = {
+    #   monospace = "JetBrainsMono Nerd Font";
+    #   sansSerif = "Inter";
+    # };
+    # image = ./wallpapers/moonlight.png;
+  };
+
+programs.waybar.enable = true;
+
+#  programs.niri = {
+#   settings = {
+#     # Input configuration
+#     input = {
+#       keyboard = {
+#         xkb = {
+#           layout = "us";
+#           # variant = "";  # Remove empty strings
+#           # model = "";
+#           # options = "";
+#         };
+#         repeat-delay = 600;
+#         repeat-rate = 25;
+#         track-layout = "global";
+#       };
+      
+#       touchpad = {
+#         tap = true;
+#         dwt = true;
+#         dwtp = true;
+#         natural-scroll = false;
+#         accel-speed = 0.0;
+#         accel-profile = "adaptive";
+#         tap-button-map = "left-right-middle";
+#         disabled-on-external-mouse = false;
+#       };
+      
+#       mouse = {
+#         accel-speed = 0.0;
+#         accel-profile = "adaptive";
+#         natural-scroll = false;
+#         left-handed = false;
+#         middle-emulation = false;
+#         scroll-method = "two-finger";
+#       };
+
+#       tablet = {
+#         # map-to-output = "";  # Remove empty strings
+#       };
+
+#       touch = {
+#         # map-to-output = "";  # Remove empty strings
+#       };
+
+#       warp-mouse-to-focus = false;
+#       focus-follows-mouse = {
+#         enable = false;
+#       };
+#     };
+
+#     # Output configuration (monitors)
+#     outputs = {
+#       "eDP-1" = {
+#         # enable = true;  # This option doesn't exist
+#         mode = { width = 1920; height = 1080; refresh = 60.0; };  # Changed from resolution/refresh-rate
+#         position = { x = 0; y = 0; };
+#         transform = {
+#           flipped = false;
+#           rotation = 0;
+#         };
+#         scale = 1.0;
+#       };
+#     };
+
+#     # Layout configuration
+#     layout = {
+#       gaps = 16;
+#       center-focused-column = "never";
+#       # always-center-single-column = false;  # This option doesn't exist
+#       preset-column-widths = [
+#         { proportion = 0.33333; }
+#         { proportion = 0.5; }
+#         { proportion = 0.66667; }
+#       ];
+#       default-column-width = { proportion = 0.5; };
+#       focus-ring = {
+#         enable = true;
+#         width = 4;
+#         active.color = "#7fc8ff";
+#         inactive.color = "#505050";
+#         # active-gradient = null;    # Remove null values
+#         # inactive-gradient = null;
+#       };
+#       border = {
+#         enable = false;
+#         width = 4;
+#         active.color = "#ffc87f";
+#         inactive.color = "#505050";
+#         # active-gradient = null;    # Remove null values
+#         # inactive-gradient = null;
+#       };
+#       struts = {
+#         left = 0;
+#         right = 0;
+#         top = 0;
+#         bottom = 0;
+#       };
+#     };
+
+#     # Window rules
+#     window-rules = [
+#       # Example:
+#       # {
+#       #   matches = [{ app-id = "firefox"; }];
+#       #   default-column-width = { proportion = 0.75; };
+#       # }
+#     ];
+
+#     # Keybindings - Fix the spawn actions
+#     binds = {
+#       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
+
+#       # Applications - Fix spawn syntax
+#       "Mod+Return".action.spawn = "alacritty";
+#       "Mod+R".action.spawn = "fuzzel";
+
+#       # Window management
+#       "Mod+Q".action.close-window = {};
+#       "Mod+H".action.focus-column-left = {};
+#       "Mod+L".action.focus-column-right = {};
+#       "Mod+J".action.focus-window-down = {};
+#       "Mod+K".action.focus-window-up = {};
+#       "Mod+A".action.focus-column-left = {};
+#       "Mod+D".action.focus-column-right = {};
+#       "Mod+S".action.focus-window-down = {};
+#       "Mod+W".action.focus-window-up = {};
+
+#       "Mod+Ctrl+H".action.move-column-left = {};
+#       "Mod+Ctrl+L".action.move-column-right = {};
+#       "Mod+Ctrl+J".action.move-window-down = {};
+#       "Mod+Ctrl+K".action.move-window-up = {};
+
+#       # Workspace switching
+#       "Mod+1".action.focus-workspace = 1;
+#       "Mod+2".action.focus-workspace = 2;
+#       "Mod+3".action.focus-workspace = 3;
+#       "Mod+4".action.focus-workspace = 4;
+
+#       "Mod+Ctrl+1".action.move-column-to-workspace = 1;
+#       "Mod+Ctrl+2".action.move-column-to-workspace = 2;
+#       "Mod+Ctrl+3".action.move-column-to-workspace = 3;
+#       "Mod+Ctrl+4".action.move-column-to-workspace = 4;
+
+#       # Column management
+#       "Mod+T".action.switch-preset-column-width = {};
+#       "Mod+F".action.maximize-column = {};
+#       "Mod+Shift+F".action.fullscreen-window = {};
+
+#       # Screenshots
+#       "Print".action.screenshot = {};
+
+#       # System
+#       "Mod+Shift+E".action.quit = {};
+#     };
+
+#     # Startup applications - Fix spawn-at-startup syntax
+#     spawn-at-startup = [
+#       # { command = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"; }
+#       { command = ["mako"]; }
+#       { command = ["waybar"]; }
+#       { command = ["swaybg" "--image" "/path/to/wallpaper.jpg"]; }
+#       { command = ["xwayland-satellite"]; }
+#     ];
+
+#     # Screenshot configuration
+#     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+
+#     # Appearance
+#     prefer-no-csd = true;
+#     hotkey-overlay.skip-at-startup = false;
+
+#     # Cursor configuration
+#     cursor = {
+#       size = 24;
+#       theme = "Bibata-Modern-Classic";
+#     };
+#   };
+# };
 }
+

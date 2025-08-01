@@ -6,9 +6,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    catppuccin = {
-      url = "github:catppuccin/nix";
-    };
+    # catppuccin = {
+    #   url = "github:catppuccin/nix";
+    # };
 
     curd = {
             url = "github:Wraient/curd";
@@ -23,14 +23,24 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = { self, nixpkgs, catppuccin, home-manager, ... } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs: 
     let
       # system = "x86_64-linux";
       pkgs = import nixpkgs {system="x86_64-linux"; config.allowUnfree = true;
-                          overlays = [inputs.alacritty-theme.overlays.default];};
+                          overlays = [inputs.alacritty-theme.overlays.default
+                                      inputs.niri.overlays.niri
+                          ];};
       inherit (self) outputs;
     in {
 
@@ -52,8 +62,11 @@
           inherit inputs;
         };
         modules = [ ./Home-manager/home.nix
+          ./Home-manager/niri
+          inputs.stylix.homeModules.stylix
+          inputs.niri.homeModules.niri
           inputs.zen-browser.homeModules.twilight
-          catppuccin.homeModules.catppuccin
+          # catppuccin.homeModules.catppuccin
           inputs.spicetify-nix.homeManagerModules.default ];
 
         # Optionally use extraSpecialArgs
