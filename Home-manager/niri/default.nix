@@ -7,8 +7,6 @@
 
   home = {
     packages = with pkgs; [
-      seatd
-      jaq
     ];
   };
 }

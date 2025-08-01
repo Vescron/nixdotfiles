@@ -69,8 +69,14 @@
     pkgs.xdg-desktop-portal-gnome
     pkgs.kdePackages.polkit-kde-agent-1
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.inter
     pkgs.font-awesome
     pkgs.swaybg
+    pkgs.hyprlock
+    pkgs.playerctl
+    pkgs.pavucontrol
+    pkgs.blueman
+    pkgs.networkmanager
     pkgs.xwayland-satellite
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -119,6 +125,9 @@
       Exec=env ELECTRON_OZONE_PLATFORM_HINT=wayland code --ozone-platform=wayland --new-window %F
       Icon=vscode
     '';
+
+    # "waybar/style.css".source = ./waybar/style.css;
+    ".config/waybar/config".source = ./waybar/config.jsonc;
   };
 
   home.sessionVariables = {
@@ -343,13 +352,23 @@ stylix = {
       gnome.enable = true;
       zen-browser.enable = true;
     };
-    # fonts = {
-    #   monospace = "JetBrainsMono Nerd Font";
-    #   sansSerif = "Inter";
-    # };
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
+      };
+      sansSerif = {
+        package = pkgs.inter;
+        name = "Inter";
+      };
+        };
   };
 
-programs.waybar.enable = true;
+programs.waybar = {
+  enable = true;
+  # settings = ;
+  style = builtins.readFile ./waybar/style.css;
+};
 
 #  programs.niri = {
 #   settings = {
