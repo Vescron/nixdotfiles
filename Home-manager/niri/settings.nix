@@ -23,13 +23,14 @@ in {
       };
       spawn-at-startup = [
         # (makeCommand "hyprlock")
-        # (makeCommand "swww-daemon")
+        (makeCommand "swww-daemon")
         # {command = ["wl-paste" "--watch" "cliphist" "store"];}
         # {command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
         # { command = ["mako"]; }
       # { command = ["waybar"]; }
       {command = ["qs"];}
-      { command = ["swaybg" "--image" "/home/sibtain/Pictures/a_white_building_with_balconies.jpg"]; }
+      { command = ["swaybg" "--image" "/home/sibtain/Pictures/casette_blur.jpg"]; }
+      { command = ["swww" "img" "/home/sibtain/Pictures/casette.jpg"]; }
       { command = ["xwayland-satellite"]; }
       ];
       input = {
@@ -99,7 +100,7 @@ in {
         border = {
           enable = true;
           width = 4;
-          active.color = "#fff9b5ff";
+          active.color = "#c20978ff";
           inactive.color = "#61a7edff";
         };
         always-center-single-column = true;

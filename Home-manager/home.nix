@@ -83,7 +83,7 @@
     pkgs.gpu-screen-recorder
     pkgs.swww
     pkgs.wallust
-    inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
+    # inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -352,7 +352,7 @@ programs.zen-browser = {
 
 stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-paper.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
     targets = {
       spicetify.enable = true;
       gnome.enable = true;
