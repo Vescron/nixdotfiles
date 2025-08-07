@@ -26,8 +26,9 @@ in {
         # (makeCommand "swww-daemon")
         # {command = ["wl-paste" "--watch" "cliphist" "store"];}
         # {command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
-        { command = ["mako"]; }
-      { command = ["waybar"]; }
+        # { command = ["mako"]; }
+      # { command = ["waybar"]; }
+      {command = ["qs"];}
       { command = ["swaybg" "--image" "/home/sibtain/Pictures/a_white_building_with_balconies.jpg"]; }
       { command = ["xwayland-satellite"]; }
       ];

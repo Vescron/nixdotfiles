@@ -31,6 +31,21 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell = {
+      # add ?ref=<tag> to track a tag
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # zaphkiel = {
+    #         url = "github:Rexcrazy804/Zaphkiel";
+    #         inputs.nixpkgs.follows = "nixpkgs";
+    #         # optional
+    #         inputs.quickshell.follows = "quickshell";
+    #         # inputs.systems.follows = "systems";
+    #     };
 
   };
 
@@ -48,7 +63,7 @@
       sibtain = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
-        modules = [./configuration.nix];
+        modules = [./configuration.nix inputs.niri.nixosModules.niri  inputs.zaphkiel.nixosModules.kurukuruDM];
         };
       };
       

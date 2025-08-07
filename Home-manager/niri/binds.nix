@@ -30,7 +30,7 @@
 
     # Applications - Fix spawn syntax
     "Mod+Return".action.spawn = "alacritty";
-    "Mod+R".action.spawn = "fuzzel";
+    "Mod+R".action = spawn "qs" "ipc" "call" "globalIPC" "toggleLauncher";
 
     # Window management
     "Mod+Q".action.close-window = {};
@@ -65,7 +65,7 @@
     "Mod+Shift+F".action.fullscreen-window = {};
     "Mod+Shift+V".action.toggle-window-floating = {};
 
-    "Mod+Space".action.toggle-overview = {};
+    "ALT+Tab".action.toggle-overview = {};
 
     # Screenshots
     "Print".action.screenshot = {};

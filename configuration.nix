@@ -285,4 +285,15 @@ fonts.enableDefaultPackages = true;
 # programs.niri.enable = true;
 programs.kdeconnect.enable = true; 
 
+# programs.kurukuruDM = {
+#         enable = true;
+#         package = pkgs.kurukurubar;                     # defaults to kurukurubar-unstable (TODO CHANGE THIS)
+#         settings = {
+#             wallpaper = /home/sibtain/.config/dotfiles/Images/a_white_building_with_balconies.jpg;            # you may use fetchurl to get remote images
+#             instantAuth = false;                        # auto starts authentication, good for fingerprint support ONLY
+#             # default_user = "rexies";                    # set to null for possible values, only usefull for multi user systems
+#             # default_session = "sway";                   # same as above, only usefull for multi session systems
+#         };
+#     };
+
 }

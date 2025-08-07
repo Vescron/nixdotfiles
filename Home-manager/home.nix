@@ -3,8 +3,8 @@
 {
   imports = [
     # Include the Home Manager module
-    ./niri
-    ./mako.nix
+    # ./niri
+    # ./mako.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -78,6 +78,12 @@
     pkgs.blueman
     pkgs.networkmanager
     pkgs.xwayland-satellite
+    pkgs.material-symbols
+    pkgs.cava
+    pkgs.gpu-screen-recorder
+    pkgs.swww
+    pkgs.wallust
+    inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -309,7 +315,7 @@
     };
   };
 
-#Spicetify module
+#Spicetifyzen module
 programs.spicetify =
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
@@ -370,183 +376,7 @@ programs.waybar = {
   style = builtins.readFile ./waybar/style.css;
 };
 
-#  programs.niri = {
-#   settings = {
-#     # Input configuration
-#     input = {
-#       keyboard = {
-#         xkb = {
-#           layout = "us";
-#           # variant = "";  # Remove empty strings
-#           # model = "";
-#           # options = "";
-#         };
-#         repeat-delay = 600;
-#         repeat-rate = 25;
-#         track-layout = "global";
-#       };
-      
-#       touchpad = {
-#         tap = true;
-#         dwt = true;
-#         dwtp = true;
-#         natural-scroll = false;
-#         accel-speed = 0.0;
-#         accel-profile = "adaptive";
-#         tap-button-map = "left-right-middle";
-#         disabled-on-external-mouse = false;
-#       };
-      
-#       mouse = {
-#         accel-speed = 0.0;
-#         accel-profile = "adaptive";
-#         natural-scroll = false;
-#         left-handed = false;
-#         middle-emulation = false;
-#         scroll-method = "two-finger";
-#       };
+programs.quickshell.enable = true;
 
-#       tablet = {
-#         # map-to-output = "";  # Remove empty strings
-#       };
-
-#       touch = {
-#         # map-to-output = "";  # Remove empty strings
-#       };
-
-#       warp-mouse-to-focus = false;
-#       focus-follows-mouse = {
-#         enable = false;
-#       };
-#     };
-
-#     # Output configuration (monitors)
-#     outputs = {
-#       "eDP-1" = {
-#         # enable = true;  # This option doesn't exist
-#         mode = { width = 1920; height = 1080; refresh = 60.0; };  # Changed from resolution/refresh-rate
-#         position = { x = 0; y = 0; };
-#         transform = {
-#           flipped = false;
-#           rotation = 0;
-#         };
-#         scale = 1.0;
-#       };
-#     };
-
-#     # Layout configuration
-#     layout = {
-#       gaps = 16;
-#       center-focused-column = "never";
-#       # always-center-single-column = false;  # This option doesn't exist
-#       preset-column-widths = [
-#         { proportion = 0.33333; }
-#         { proportion = 0.5; }
-#         { proportion = 0.66667; }
-#       ];
-#       default-column-width = { proportion = 0.5; };
-#       focus-ring = {
-#         enable = true;
-#         width = 4;
-#         active.color = "#7fc8ff";
-#         inactive.color = "#505050";
-#         # active-gradient = null;    # Remove null values
-#         # inactive-gradient = null;
-#       };
-#       border = {
-#         enable = false;
-#         width = 4;
-#         active.color = "#ffc87f";
-#         inactive.color = "#505050";
-#         # active-gradient = null;    # Remove null values
-#         # inactive-gradient = null;
-#       };
-#       struts = {
-#         left = 0;
-#         right = 0;
-#         top = 0;
-#         bottom = 0;
-#       };
-#     };
-
-#     # Window rules
-#     window-rules = [
-#       # Example:
-#       # {
-#       #   matches = [{ app-id = "firefox"; }];
-#       #   default-column-width = { proportion = 0.75; };
-#       # }
-#     ];
-
-#     # Keybindings - Fix the spawn actions
-#     binds = {
-#       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
-
-#       # Applications - Fix spawn syntax
-#       "Mod+Return".action.spawn = "alacritty";
-#       "Mod+R".action.spawn = "fuzzel";
-
-#       # Window management
-#       "Mod+Q".action.close-window = {};
-#       "Mod+H".action.focus-column-left = {};
-#       "Mod+L".action.focus-column-right = {};
-#       "Mod+J".action.focus-window-down = {};
-#       "Mod+K".action.focus-window-up = {};
-#       "Mod+A".action.focus-column-left = {};
-#       "Mod+D".action.focus-column-right = {};
-#       "Mod+S".action.focus-window-down = {};
-#       "Mod+W".action.focus-window-up = {};
-
-#       "Mod+Ctrl+H".action.move-column-left = {};
-#       "Mod+Ctrl+L".action.move-column-right = {};
-#       "Mod+Ctrl+J".action.move-window-down = {};
-#       "Mod+Ctrl+K".action.move-window-up = {};
-
-#       # Workspace switching
-#       "Mod+1".action.focus-workspace = 1;
-#       "Mod+2".action.focus-workspace = 2;
-#       "Mod+3".action.focus-workspace = 3;
-#       "Mod+4".action.focus-workspace = 4;
-
-#       "Mod+Ctrl+1".action.move-column-to-workspace = 1;
-#       "Mod+Ctrl+2".action.move-column-to-workspace = 2;
-#       "Mod+Ctrl+3".action.move-column-to-workspace = 3;
-#       "Mod+Ctrl+4".action.move-column-to-workspace = 4;
-
-#       # Column management
-#       "Mod+T".action.switch-preset-column-width = {};
-#       "Mod+F".action.maximize-column = {};
-#       "Mod+Shift+F".action.fullscreen-window = {};
-
-#       # Screenshots
-#       "Print".action.screenshot = {};
-
-#       # System
-#       "Mod+Shift+E".action.quit = {};
-#     };
-
-#     # Startup applications - Fix spawn-at-startup syntax
-#     spawn-at-startup = [
-#       # { command = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"; }
-#       { command = ["mako"]; }
-#       { command = ["waybar"]; }
-#       { command = ["swaybg" "--image" "/path/to/wallpaper.jpg"]; }
-#       { command = ["xwayland-satellite"]; }
-#     ];
-
-#     # Screenshot configuration
-#     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
-
-#     # Appearance
-#     prefer-no-csd = true;
-#     hotkey-overlay.skip-at-startup = false;
-
-#     # Cursor configuration
-#     cursor = {
-#       size = 24;
-#       theme = "Bibata-Modern-Classic";
-#     };
-#   };
-# };
 }
 
