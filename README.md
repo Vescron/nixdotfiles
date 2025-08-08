@@ -1,5 +1,5 @@
 # My personal nix-os config files  
-![](https://github.com/Vescron/nixdotfiles/blob/main/Images/Screenshot%20From%202025-05-11%2018-11-12.png)
+![](https://github.com/Vescron/nixdotfiles/blob/main/Images/Screenshot-from-2025-08-07-10-07-53.png)
 ## To replicate the config:
 1. Clone the repo
    ```
