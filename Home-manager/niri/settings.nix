@@ -28,7 +28,7 @@ in {
         # {command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
         # { command = ["mako"]; }
       # { command = ["waybar"]; }
-      {command = ["qs" "-c" "${./../../Noctalia}"];}
+      {command = ["qs" "-p" "/home/sibtain/.config/dotfiles/Noctalia"];}
       { command = ["swaybg" "--image" "${./../../Images/casette_blur.jpg}"]; }
       { command = ["swww" "img" "${./../../Images/casette.jpg}"]; }
       { command = ["xwayland-satellite"]; }
