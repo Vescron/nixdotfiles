@@ -24,20 +24,20 @@
 
     "Mod+Shift+Alt+S".action = screenshot-window;
     "Mod+Shift+S".action.screenshot = {show-pointer = false;};
-    "Ctrl+Alt+L".action = spawn "sh -c pgrep hyprlock || hyprlock";
+    "Mod+L".action = spawn "qs" "ipc" "-p" "/home/sibtain/.config/dotfiles/Noctalia" "call" "globalIPC" "toggleLock";
 
     "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
     # Applications - Fix spawn syntax
     "Mod+Return".action.spawn = "alacritty";
-    "Mod+R".action = spawn "qs" "ipc" "call" "globalIPC" "toggleLauncher";
+    "Mod+R".action = spawn "qs" "ipc" "-p" "/home/sibtain/.config/dotfiles/Noctalia" "call" "globalIPC" "toggleLauncher";
 
     # Window management
     "Mod+Q".action.close-window = {};
-    "Mod+H".action.focus-column-left = {};
-    "Mod+L".action.focus-column-right = {};
-    "Mod+J".action.focus-window-down = {};
-    "Mod+K".action.focus-window-up = {};
+    "Mod+left".action.focus-column-left = {};
+    "Mod+right".action.focus-column-right = {};
+    "Mod+down".action.focus-window-down = {};
+    "Mod+up".action.focus-window-up = {};
     "Mod+A".action.focus-column-left = {};
     "Mod+D".action.focus-column-right = {};
     "Mod+S".action.focus-window-down = {};
