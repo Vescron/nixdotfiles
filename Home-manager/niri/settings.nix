@@ -28,9 +28,9 @@ in {
         # {command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
         # { command = ["mako"]; }
       # { command = ["waybar"]; }
-      {command = ["qs"];}
-      { command = ["swaybg" "--image" "/home/sibtain/Pictures/casette_blur.jpg"]; }
-      { command = ["swww" "img" "/home/sibtain/Pictures/casette.jpg"]; }
+      {command = ["qs" "-c" "${./../../Noctalia}"];}
+      { command = ["swaybg" "--image" "${./../../Images/casette_blur.jpg}"]; }
+      { command = ["swww" "img" "${./../../Images/casette.jpg}"]; }
       { command = ["xwayland-satellite"]; }
       ];
       input = {

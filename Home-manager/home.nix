@@ -63,8 +63,7 @@
     pkgs.tokyonight-gtk-theme
     # pkgs.mako
     pkgs.fuzzel
-    pkgs.base16-schemes
-    pkgs.papirus-icon-theme   # Add this line
+    pkgs.base16-schemes 
     pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-gnome
     pkgs.kdePackages.polkit-kde-agent-1
@@ -310,7 +309,9 @@
     # };
 
     iconTheme = {
-      package = pkgs.papirus-icon-theme; 
+      package = pkgs.papirus-icon-theme.override {
+        color = "pink"; 
+      };
       name = "Papirus-Dark";              
     };
   };

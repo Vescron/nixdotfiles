@@ -76,5 +76,6 @@
     #Applications
     "Mod+E".action.spawn = "nautilus";
     "Mod+B".action.spawn = "zen-twilight";
+    "Mod+C".action.spawn = "code";
   };
 }

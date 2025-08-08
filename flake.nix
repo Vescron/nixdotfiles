@@ -63,7 +63,7 @@
       sibtain = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
-        modules = [./configuration.nix inputs.niri.nixosModules.niri  inputs.zaphkiel.nixosModules.kurukuruDM];
+        modules = [./configuration.nix inputs.niri.nixosModules.niri ]; #inputs.zaphkiel.nixosModules.kurukuruDM];
         };
       };
       

@@ -19,7 +19,7 @@
     # useOSProber = true;
     efiSupport = true;
     extraEntries = ''
-      menuentry 'Windows Boot Manager (on /dev/sda4)' --class windows --class os $menuentry_id_option 'osprober-efi-3736-D347' {
+      menuentry 'Windows Boot Manager' --class windows --class os $menuentry_id_option 'osprober-efi-3736-D347' {
         insmod part_gpt
         insmod fat
         set root='hd0,gpt5'
