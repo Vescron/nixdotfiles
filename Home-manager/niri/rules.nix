@@ -56,15 +56,15 @@
       # ];
       # scroll-factor = 0.5;
     }
-    {
-      matches = [
-        {app-id = "zen";}
-        {app-id = "firefox";}
-        {app-id = "chromium-browser";}
-        {app-id = "edge";}
-      ];
-      open-maximized = true;
-    }
+    # {
+    #   matches = [
+    #     {app-id = "zen";}
+    #     {app-id = "firefox";}
+    #     {app-id = "chromium-browser";}
+    #     {app-id = "edge";}
+    #   ];
+    #   open-maximized = true;
+    # }
     {
       matches = [
         {

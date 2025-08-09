@@ -24,8 +24,8 @@ in {
       spawn-at-startup = [
         # (makeCommand "hyprlock")
         (makeCommand "swww-daemon")
-        # {command = ["wl-paste" "--watch" "cliphist" "store"];}
-        # {command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
+        { command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"]; }
+        { command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"]; }
         # { command = ["mako"]; }
       # { command = ["waybar"]; }
       {command = ["qs" "-p" "/home/sibtain/.config/dotfiles/Noctalia"];}

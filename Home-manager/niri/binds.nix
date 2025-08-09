@@ -77,5 +77,11 @@
     "Mod+E".action.spawn = "nautilus";
     "Mod+B".action.spawn = "zen-twilight";
     "Mod+C".action.spawn = "code";
+
+    # Clipboard: pick from history and copy to clipboard
+    "Mod+V".action = spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy";
+
+    # Optional: wipe history
+    "Mod+Shift+Delete".action = spawn "cliphist" "wipe";
   };
 }

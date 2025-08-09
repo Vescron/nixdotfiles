@@ -62,7 +62,7 @@
     pkgs.termius
     pkgs.tokyonight-gtk-theme
     # pkgs.mako
-    pkgs.fuzzel
+    # pkgs.fuzzel
     pkgs.base16-schemes 
     pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-gnome
@@ -82,6 +82,8 @@
     pkgs.gpu-screen-recorder
     pkgs.swww
     pkgs.wallust
+    pkgs.wl-clipboard
+    pkgs.cliphist
     # inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -351,6 +353,10 @@ programs.zen-browser = {
     };
   };
 
+programs.fuzzel = {
+    enable = true;          # lets Stylix generate ~/.config/fuzzel/fuzzel.ini
+  };
+
 stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
@@ -358,6 +364,7 @@ stylix = {
       spicetify.enable = true;
       gnome.enable = true;
       zen-browser.enable = true;
+      fuzzel.enable = true;
     };
     fonts = {
       monospace = {
