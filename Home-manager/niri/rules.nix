@@ -56,15 +56,15 @@
       # ];
       # scroll-factor = 0.5;
     }
-    # {
-    #   matches = [
-    #     {app-id = "zen";}
-    #     {app-id = "firefox";}
-    #     {app-id = "chromium-browser";}
-    #     {app-id = "edge";}
-    #   ];
-    #   open-maximized = true;
-    # }
+    {
+      matches = [
+        {app-id = "zen";}
+        {app-id = "firefox";}
+        {app-id = "chromium-browser";}
+        {app-id = "edge";}
+      ];
+      default-column-width = {proportion = 0.9;};
+    }
     {
       matches = [
         {
@@ -222,6 +222,12 @@
     {
       matches = [{title = "Error";}];
       open-floating = true;
+    }
+    {
+      matches = [{app-id = "Alacritty";}];
+      open-floating = true;
+      # opacity = 0.8;
+
     }
   ];
 in {

@@ -284,8 +284,12 @@
 
   programs.alacritty = {
     enable = true;
+    # settings.window.blur = true;
     # settings.window.decorations = "none";
-    settings.general.import = [pkgs.alacritty-theme.tokyo_night];
+    # settings.window = {
+    #   opacity = 0.8;
+    # };
+    # settings.general.import = [pkgs.alacritty-theme.tokyo_night];
   };
   
   # catppuccin.flavor = "mocha";
